@@ -290,6 +290,3 @@ values('T020', 'F006', '2017-04-11', '0009');
 
 
 
-
---ps aux|grep sqlplus
---kill firstnumber
