@@ -116,8 +116,6 @@
 
 		$query = "select * from flight where fno in (select fno from ticket where tid = $tid and pid = $pid)";
 		
-	} else {
-		return;
 	}
 
 	if ($hasAtLeastOneField) {
