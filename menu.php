@@ -14,6 +14,9 @@
     <form>
         <button type="submit" formaction="crew.php">Flight Crew</button>
     </form>
+    <form>
+        <button type="submit" formaction="admin.php">Administrator</button>
+    </form>
 </body>
 
 </html>

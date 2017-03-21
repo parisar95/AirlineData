@@ -6,7 +6,7 @@
 <div id="flightSearch">
     <h2>Search For a Flight</h2>
     <b>Search by Dates</b>
-    <form method="POST" action="cust.php">
+    <form method="POST" action= <?php __FILE__ ?> >
         <table>
 	    <tr>
                 <td>Departure Airport</td>
@@ -34,7 +34,7 @@
         </table>
     </form>
     <b>Search by Flight Number</b>
-    <form method="POST" action="cust.php">
+    <form method="POST" action= <?php __FILE__ ?> >
         <table>
 	    <tr>
                 <td>Flight Number</td>
@@ -54,7 +54,7 @@
 
 <div id="reservationSearch">
     <h2>Search For a Reservation</h2>
-    <form method="POST" action="cust.php">
+    <form method="POST" action= <?php __FILE__ ?> >
         <table>
 	    <tr>
                 <td>Ticket ID</td>
@@ -152,7 +152,7 @@
 
 ?>
 
-</td></tr>
+</td></tr></table>
 
 </body>
 </html>

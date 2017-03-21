@@ -5,11 +5,11 @@
 
 <div id="assnSearch">
     <h2>View Flight Assignments</h2>
-    <form method="POST" action="crew.php">
+    <form method="POST" action= <?php __FILE__ ?> >
         <table>
 	    <tr>
                 <td>Employee ID</td>
-                <td><input type="input" name="eid"></td>
+                <td><input type="input" name="eid" required></td>
             </tr>
             <tr>
                 <td><button type="submit" value="submit" name="searchFltAssnSubmit">Search</button></td>
@@ -21,15 +21,15 @@
 
 <div id="passengerSearch">
     <h2>View Flight Passengers</h2>
-    <form method="POST" action="crew.php">
+    <form method="POST" action= <?php __FILE__ ?> >
         <table>
 	    <tr>
                 <td>Flight Number</td>
-                <td><input type="input" name="fno"></td>
+                <td><input type="input" name="fno" required></td>
             </tr>
             <tr>
                 <td>Departure Date</td>
-                <td><input type="date" name="dDate"></td>
+                <td><input type="date" name="dDate" required></td>
             </tr>
             <tr>
                 <td><button type="submit" value="submit" name="searchPassSubmit">Search</button></td>
@@ -123,7 +123,7 @@
 	}
 ?>
 
-</td></tr>
+</td></tr></table>
 
 </body>
 </html>
