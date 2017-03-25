@@ -114,7 +114,7 @@
 		if ($tid === "''") $tid = 'tid';	else $hasAtLeastOneField = true;
 		if ($pid === "''") $pid = 'pid';	else $hasAtLeastOneField = true;
 
-		$query = "select * from flight where fno in (select fno from ticket where tid = $tid and pid = $pid)";
+		$query = "select f.fno, f.dateflight, deptime, depacode, arrdate, arrtime, arracode, regno from flight f, (select fno, dateflight from ticket where tid = $tid and pid = $pid) k where f.fno = k.fno and f.dateflight = k.dateflight";
 		
 	}
 
