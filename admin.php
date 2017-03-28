@@ -59,7 +59,7 @@
                 <td><input type="input" name="capacity" required></td>
             </tr>
         <tr>
-                <td><button type="submit" value="submit" name="removeResSubmit">Remove</button></td>
+                <td><button type="submit" value="submit" name="editCapacitySubmit">Edit</button></td>
             </tr>
         </table>
     </form>
@@ -182,6 +182,18 @@
         // $query = "delete from crewassn where fno = $fno and dateflight = $dateflight"; 
         $query1 = "delete from flight where fno = $fno and dateflight = $dateflight";
         // $query2 = "delete from ticket where fno = $fno and dateflight = $dateflight";
+        $print = false;
+    }
+
+    if (array_key_exists('editCapacitySubmit', $_POST)) {
+        $model = "'".$_POST['model']."'";
+        $capacity = "'".$_POST['capacity']."'";
+
+        if ($model != "'" && $capacity != "'")
+            $hasRequiredFields = true;
+
+        $query = "update modelinfo set capacity = $capacity where model = $model";
+
         $print = false;
     }
 
