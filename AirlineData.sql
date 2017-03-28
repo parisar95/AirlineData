@@ -60,9 +60,9 @@ CREATE TABLE Flight
 	arracode CHAR(4) NOT NULL,
 	regno CHAR(5) NOT NULL,
 	PRIMARY KEY(fno, dateflight),
-	FOREIGN KEY (depacode) REFERENCES Airport_d(acode_d) ON DELETE CASCADE,
-	FOREIGN KEY (arracode) REFERENCES Airport_a(acode_a) ON DELETE CASCADE,
-	FOREIGN KEY (regno) REFERENCES AirplaneModel(regno) ON DELETE CASCADE);
+	FOREIGN KEY (depacode) REFERENCES Airport_d(acode_d) ,
+	FOREIGN KEY (arracode) REFERENCES Airport_a(acode_a) ,
+	FOREIGN KEY (regno) REFERENCES AirplaneModel(regno));
 
 CREATE TABLE CrewAssn
 	(eid INTEGER, 
@@ -79,7 +79,7 @@ CREATE TABLE Ticket
 	dateflight DATE NOT NULL,
 	pid INTEGER NOT NULL,
 	PRIMARY KEY (tid),
-	FOREIGN KEY (fno, dateflight) REFERENCES Flight,
+	FOREIGN KEY (fno, dateflight) REFERENCES Flight ON DELETE CASCADE,
 	FOREIGN KEY (pid) REFERENCES Passenger);
 
 insert into Airport

@@ -46,6 +46,25 @@
     </form>
 </div>
 
+<div id="editCapacity">
+    <h2>Edit Model Capacity</h2>
+    <form method="POST" action= <?php __FILE__ ?> >
+        <table>
+        <tr>
+                <td>Model Number</td>
+                <td><input type="input" name="model" required></td>
+            </tr>
+        <tr>
+                <td>New Capacity</td>
+                <td><input type="input" name="capacity" required></td>
+            </tr>
+        <tr>
+                <td><button type="submit" value="submit" name="removeResSubmit">Remove</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 <div id="editFlightTimes">
     <h2>Edit a Flight</h2>
     Leave fields blank to keep current value
@@ -147,6 +166,64 @@
 
 	error_reporting(-1);
 	ini_set('display_errors',1);
+
+    date_default_timezone_set('UTC');
+    $hasRequiredFields = false;
+    $print = true;
+
+    if (array_key_exists('removeFlightSubmit', $_POST)) {
+        $fno = "'".$_POST['fno']."'";
+        $dateflight = "'".strtoupper(date('Y-m-d', strtotime($_POST['dateflight'])))."'";
+
+        if ($fno !== "''" && $dateflight !== "'1970-01-01'")
+            $hasRequiredFields = true;
+
+       
+        // $query = "delete from crewassn where fno = $fno and dateflight = $dateflight"; 
+        $query1 = "delete from flight where fno = $fno and dateflight = $dateflight";
+        // $query2 = "delete from ticket where fno = $fno and dateflight = $dateflight";
+        $print = false;
+    }
+
+
+    if ($hasRequiredFields) {
+
+    require('sqlfn.php');
+    $username = $_COOKIE['username'];
+    $password = $_COOKIE['password'];
+    $db_conn = dbConn($username, $password);
+    $result = executePlainSQL($query);
+    // $result1 = executePlainSQL($query1);
+    // $result2 = executePlainSQL($query2);
+
+    OCICommit($db_conn);
+    dbDisconn($db_conn);
+        
+     echo '<table border="1"><thead>'.
+          '<td><b>Flight No.</b></td>'.
+          '<td><b>Departure Airport</b></td>'.
+          '<td><b>Arrival Airport</b></td>'.
+          '<td><b>Departure Date</b></td>'.
+          '<td><b>Arrival Date</b></td>'.
+          '</thead>';
+    if ($print != true){
+        return;
+    }
+
+
+    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+        echo "<tr  align='center'>";
+        echo "<td>" . $row[0] . "</td>";
+        echo "<td>" . $row[3] . "</td>";
+        echo "<td>" . $row[6] . "</td>";
+        echo "<td>" . $row[1] . "</td>";
+        echo "<td>" . $row[4] . "</td>";
+        echo "</tr>";
+    }      
+    
+        echo '</table>';
+    } 
+
 
 ?>
 
