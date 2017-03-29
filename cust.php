@@ -167,7 +167,7 @@ p {
 			'<td><b>Arrival Date</b></td>'.
 		     '</thead>';
 		while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-		    	echo "<tr  align='right'
+		    	echo "<tr  align='right'>";
 			echo "<td>" . $row[0] . "</td>";
 			echo "<td>" . $row[3] . "</td>";
 			echo "<td>" . $row[6] . "</td>";
