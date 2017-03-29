@@ -195,7 +195,7 @@
 
        
         // $query = "delete from crewassn where fno = $fno and dateflight = $dateflight"; 
-        $query1 = "delete from flight where fno = $fno and dateflight = $dateflight";
+        $query = "delete from flight where fno = $fno and dateflight = $dateflight";
         // $query2 = "delete from ticket where fno = $fno and dateflight = $dateflight";
         $print = false;
     }
@@ -242,7 +242,7 @@
 
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
         	echo "<tr align = 'center'>";
-        	echo "<td>" . $row[5] . "</td>";
+        	echo "<td>" . $row[0] . "</td>";
         	echo "<td>" . $row[1] . "</td>";
         	echo "</tr>";
         }
@@ -257,8 +257,6 @@
     $password = $_COOKIE['password'];
     $db_conn = dbConn($username, $password);
     $result = executePlainSQL($query);
-    // $result1 = executePlainSQL($query1);
-    // $result2 = executePlainSQL($query2);
 
     OCICommit($db_conn);
     dbDisconn($db_conn);
