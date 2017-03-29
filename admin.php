@@ -65,6 +65,21 @@
     </form>
 </div>
 
+<div id="viewModelInfo">
+    <h2>View Model Info</h2>
+    <form method="POST" action= <?php __FILE__ ?> >
+        <table>
+        <tr>
+                <td>Model Number</td>
+                <td><input type="input" name="model" required></td>
+            </tr>
+        <tr>
+                <td><button type="submit" value="submit" name="viewModelInfo">View Bruh</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 <div id="editFlightTimes">
     <h2>Edit a Flight</h2>
     Leave fields blank to keep current value
@@ -197,6 +212,43 @@
         $print = false;
     }
 
+    if (array_key_exists('viewModelInfo', $_POST)) {
+    	$model = "'".$_POST['model']."'";
+
+    	if ($model != "'")
+    		$hasRequiredFields = true;
+
+    	$query = "select * from modelinfo where model = $model";
+
+    }
+    if (array_key_exists('viewModelInfo', $_POST)) {
+    	require('sqlfn.php');
+    	$username = $_COOKIE['username'];
+    	$password = $_COOKIE['password'];
+   		$db_conn = dbConn($username, $password);
+    	$result = executePlainSQL($query);
+
+    	OCICommit($db_conn);
+    	dbDisconn($db_conn);
+
+    	echo '<table border="1"><thead>'.
+        '<td><b>Model No.</b></td>'.
+        '<td><b>Capacity</b></td>'.
+        '</thead>';
+
+        if ($print != true) {
+        	return;
+        }
+
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+        	echo "<tr align = 'center'>";
+        	echo "<td>" . $row[5] . "</td>";
+        	echo "<td>" . $row[1] . "</td>";
+        	echo "</tr>";
+        }
+        echo '</table>';
+
+    } else
 
     if ($hasRequiredFields) {
 
